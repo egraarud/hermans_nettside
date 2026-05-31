@@ -49,7 +49,7 @@ export const useChangePassword = () =>
 
 export const logout = () => {
   localStorage.removeItem('jwt')
-  window.location.href = '/logg-inn'
+  window.location.href = '/'
 }
 
 export const useAdminUsers = () =>

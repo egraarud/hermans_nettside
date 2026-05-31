@@ -11,7 +11,7 @@ export default function AppShell() {
         style={{ backgroundImage: `url(${oya})` }}
       />
       {/* Translucent white veil so content cards remain legible */}
-      <div className="fixed inset-0 -z-10 bg-white/70" />
+      <div className="fixed inset-0 -z-10 bg-white/55" />
 
       <NavBar />
       <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-8">
