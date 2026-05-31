@@ -17,18 +17,18 @@ export default function LeaderboardTable({ lb, highlightParticipantId }: Props) 
       <table className="w-full text-sm">
         <thead>
           <tr className="text-left text-xs font-semibold uppercase tracking-wider text-slate-400 border-b border-slate-100">
-            <th className="px-4 py-3 w-12">#</th>
-            <th className="px-4 py-3">Deltaker</th>
-            {isIndividual && <th className="px-4 py-3 text-right">Resultat</th>}
+            <th className="px-3 sm:px-4 py-3 w-10 sm:w-12">#</th>
+            <th className="px-3 sm:px-4 py-3">Deltaker</th>
+            {isIndividual && <th className="px-3 sm:px-4 py-3 text-right">Resultat</th>}
             {isH2H && (
               <>
-                <th className="px-4 py-3 text-right">V</th>
-                <th className="px-4 py-3 text-right">U</th>
-                <th className="px-4 py-3 text-right">T</th>
-                <th className="px-4 py-3 text-right">Poeng</th>
+                <th className="hidden sm:table-cell px-4 py-3 text-right">V</th>
+                <th className="hidden sm:table-cell px-4 py-3 text-right">U</th>
+                <th className="hidden sm:table-cell px-4 py-3 text-right">T</th>
+                <th className="px-3 sm:px-4 py-3 text-right">Poeng</th>
               </>
             )}
-            {isOverall && <th className="px-4 py-3 text-right">Poeng</th>}
+            {isOverall && <th className="px-3 sm:px-4 py-3 text-right">Poeng</th>}
           </tr>
         </thead>
         <tbody className="divide-y divide-slate-50">
@@ -46,13 +46,13 @@ export default function LeaderboardTable({ lb, highlightParticipantId }: Props) 
                     : 'hover:bg-slate-50'
                 }`}
               >
-                <td className="px-4 py-3 w-12">
+                <td className="px-3 sm:px-4 py-3 w-10 sm:w-12">
                   {MEDAL[entry.rank]
                     ? <span className="text-base">{MEDAL[entry.rank]}</span>
                     : <span className="text-slate-400 font-medium tabular-nums">{entry.rank}</span>
                   }
                 </td>
-                <td className="px-4 py-3">
+                <td className="px-3 sm:px-4 py-3">
                   <span className={`font-medium ${isTop3 ? 'text-slate-800' : 'text-slate-700'}`}>
                     {entry.participant_name}
                   </span>
@@ -63,20 +63,20 @@ export default function LeaderboardTable({ lb, highlightParticipantId }: Props) 
                   )}
                 </td>
                 {isIndividual && (
-                  <td className="px-4 py-3 text-right font-mono font-semibold text-slate-700">
+                  <td className="px-3 sm:px-4 py-3 text-right font-mono font-semibold text-slate-700">
                     {entry.score}
                   </td>
                 )}
                 {isH2H && (
                   <>
-                    <td className="px-4 py-3 text-right text-slate-600">{entry.wins ?? 0}</td>
-                    <td className="px-4 py-3 text-right text-slate-400">{entry.draws ?? 0}</td>
-                    <td className="px-4 py-3 text-right text-slate-400">{entry.losses ?? 0}</td>
-                    <td className="px-4 py-3 text-right font-bold text-slate-800">{entry.points ?? 0}</td>
+                    <td className="hidden sm:table-cell px-4 py-3 text-right text-slate-600">{entry.wins ?? 0}</td>
+                    <td className="hidden sm:table-cell px-4 py-3 text-right text-slate-400">{entry.draws ?? 0}</td>
+                    <td className="hidden sm:table-cell px-4 py-3 text-right text-slate-400">{entry.losses ?? 0}</td>
+                    <td className="px-3 sm:px-4 py-3 text-right font-bold text-slate-800">{entry.points ?? 0}</td>
                   </>
                 )}
                 {isOverall && (
-                  <td className="px-4 py-3 text-right font-bold text-slate-800">{entry.total_points ?? 0}</td>
+                  <td className="px-3 sm:px-4 py-3 text-right font-bold text-slate-800">{entry.total_points ?? 0}</td>
                 )}
               </tr>
             )

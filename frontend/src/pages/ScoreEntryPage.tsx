@@ -58,6 +58,14 @@ export default function ScoreEntryPage() {
   const isPreFilled = !!preMatchId || !!preSportId
 
   // For pre-filled match, determine "my" ID vs opponent
+  const SCORE_HINTS: Record<string, string> = {
+    badminton: '0–21',
+    sjakk: '0–1',
+    boccia: '0–13',
+    minigolf: 'Antall slag',
+  }
+  const scoreHint = selectedSport ? (SCORE_HINTS[selectedSport.slug] ?? 'Poeng') : 'Poeng'
+
   const myParticipantId = me.participant_id
   let opponentId: number | undefined
   let myScoreLabel = 'Din score'
@@ -104,11 +112,7 @@ export default function ScoreEntryPage() {
           score: Number(score),
         })
       }
-      setFeedback({ ok: true, msg: 'Resultat registrert!' })
-      setScore('')
-      setScoreA('')
-      setScoreB('')
-      setWinnerId('')
+      navigate('/program')
     } catch (err: any) {
       setFeedback({ ok: false, msg: err?.response?.data?.detail ?? 'Noe gikk galt.' })
     }
@@ -216,7 +220,7 @@ export default function ScoreEntryPage() {
                   value={scoreA}
                   onChange={e => setScoreA(e.target.value)}
                   className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  placeholder="f.eks. 21-15"
+                  placeholder={scoreHint}
                 />
               </div>
               <div>
@@ -226,7 +230,7 @@ export default function ScoreEntryPage() {
                   value={scoreB}
                   onChange={e => setScoreB(e.target.value)}
                   className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400"
-                  placeholder="f.eks. 15-21"
+                  placeholder={scoreHint}
                 />
               </div>
             </div>

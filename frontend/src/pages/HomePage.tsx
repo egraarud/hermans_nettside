@@ -33,7 +33,7 @@ export default function HomePage() {
         <>
           {/* Hero */}
           <div
-            className="relative bg-slate-900 rounded-2xl overflow-hidden px-8 py-16 text-center shadow-xl"
+            className="relative bg-slate-900 rounded-2xl overflow-hidden px-4 sm:px-8 py-12 sm:py-16 text-center shadow-xl"
             style={{ backgroundImage: `url(${oymarksjoen})`, backgroundSize: 'cover', backgroundPosition: 'center 60%' }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-slate-900/70 via-slate-900/80 to-slate-900/90" />
@@ -70,17 +70,17 @@ export default function HomePage() {
 
           {/* My rank banner */}
           {me && myRank && (
-            <div className="bg-amber-50 border border-amber-200 rounded-xl px-5 py-4 flex items-center justify-between gap-4">
+            <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 sm:px-5 py-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
               <div>
                 <p className="font-semibold text-amber-900 text-sm">Dine resultater</p>
-                <p className="text-amber-800 mt-0.5">
+                <p className="text-amber-800 mt-0.5 text-sm">
                   Du er på <strong>plass {myRank.rank}</strong> i sammenlagtledertavlen
                   med <strong>{myRank.total_points} poeng</strong>.
                 </p>
               </div>
               <Link
                 to="/statistikk"
-                className="shrink-0 text-sm font-medium text-amber-700 hover:text-amber-900 underline underline-offset-2"
+                className="self-start sm:self-auto shrink-0 text-sm font-medium text-amber-700 hover:text-amber-900 underline underline-offset-2"
               >
                 Se statistikk →
               </Link>

@@ -33,16 +33,18 @@ export default function LeaderboardPage() {
         <p className="text-slate-500 text-sm mt-0.5">{edition.name}</p>
       </div>
 
-      {/* Sport tabs */}
-      <div className="flex gap-1.5 flex-wrap bg-slate-200/60 p-1 rounded-xl w-fit">
-        <button onClick={() => setSelectedSportId(undefined)} className={tabClass(!selectedSportId)}>
-          Sammenlagt
-        </button>
-        {sports?.map(s => (
-          <button key={s.id} onClick={() => setSelectedSportId(s.id)} className={tabClass(selectedSportId === s.id)}>
-            {s.name}
+      {/* Sport tabs — horizontally scrollable on mobile */}
+      <div className="overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0 pb-1">
+        <div className="flex gap-1.5 bg-slate-200/60 p-1 rounded-xl w-max sm:w-fit">
+          <button onClick={() => setSelectedSportId(undefined)} className={tabClass(!selectedSportId)}>
+            Sammenlagt
           </button>
-        ))}
+          {sports?.map(s => (
+            <button key={s.id} onClick={() => setSelectedSportId(s.id)} className={tabClass(selectedSportId === s.id)}>
+              {s.name}
+            </button>
+          ))}
+        </div>
       </div>
 
       {lbLoading ? (

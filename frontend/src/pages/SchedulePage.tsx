@@ -24,35 +24,56 @@ function MatchRow({
   const isMine = myId === match.player_a_id || myId === match.player_b_id
   const canRegister = !played && (isMine || isAdmin)
 
+  const isDraw = played && match.winner_id === null
+  const aWon = played && match.winner_id === match.player_a_id
+  const bWon = played && match.winner_id === match.player_b_id
+
+  const nameAClass = isDraw
+    ? 'text-yellow-500 font-semibold'
+    : aWon
+      ? 'text-emerald-600 font-semibold'
+      : played
+        ? 'text-slate-400'
+        : isMine
+          ? 'text-slate-800 font-semibold'
+          : 'text-slate-700 font-medium'
+
+  const nameBClass = isDraw
+    ? 'text-yellow-500 font-semibold'
+    : bWon
+      ? 'text-emerald-600 font-semibold'
+      : played
+        ? 'text-slate-400'
+        : isMine
+          ? 'text-slate-800 font-semibold'
+          : 'text-slate-700 font-medium'
+
+  const rowBg = played
+    ? 'bg-slate-200/70'
+    : isMine
+      ? 'bg-amber-50'
+      : ''
+
   return (
-    <div className={`flex items-center justify-between gap-4 px-5 py-3.5 ${isMine && !played ? 'bg-amber-50' : ''}`}>
-      <div className="flex items-center gap-3 min-w-0">
-        <span className={`w-2 h-2 rounded-full shrink-0 ${played ? 'bg-emerald-400' : 'bg-slate-300'}`} />
-        <span className="text-slate-800 font-medium text-sm truncate">
-          {nameA} <span className="text-slate-400 font-normal">vs</span> {nameB}
-        </span>
-        {played && match.score_a && (
-          <span className="text-xs text-slate-400 font-mono shrink-0">
-            {match.score_a} – {match.score_b}
+    <div className={`px-4 sm:px-5 py-3.5 ${rowBg}`}>
+      <div className="flex items-center justify-between gap-3">
+        <div className="flex items-center gap-2.5 min-w-0">
+          <span className={`w-2 h-2 rounded-full shrink-0 ${played ? 'bg-emerald-400' : 'bg-slate-300'}`} />
+          <span className="text-sm truncate">
+            <span className={nameAClass}>{nameA}</span>
+            <span className="text-slate-300 mx-1.5">vs</span>
+            <span className={nameBClass}>{nameB}</span>
           </span>
-        )}
-        {played && !match.score_a && match.winner_id && (
-          <span className="text-xs text-emerald-600 font-medium shrink-0">
-            {nameMap[match.winner_id] ?? '?'} vant
-          </span>
-        )}
-        {played && !match.winner_id && (
-          <span className="text-xs text-slate-400 font-medium shrink-0">Uavgjort</span>
+        </div>
+        {canRegister && (
+          <Link
+            to={`/registrer?match=${match.id}`}
+            className="shrink-0 text-xs font-semibold text-slate-600 hover:text-amber-600 border border-slate-200 hover:border-amber-300 rounded-lg px-3 py-1.5 transition-colors"
+          >
+            Registrer →
+          </Link>
         )}
       </div>
-      {canRegister && (
-        <Link
-          to={`/registrer?match=${match.id}`}
-          className="shrink-0 text-xs font-semibold text-slate-600 hover:text-amber-600 border border-slate-200 hover:border-amber-300 rounded-lg px-3 py-1.5 transition-colors"
-        >
-          Registrer →
-        </Link>
-      )}
     </div>
   )
 }
@@ -174,7 +195,7 @@ export default function SchedulePage() {
                 return (
                   <div
                     key={p.id}
-                    className={`flex items-center justify-between gap-4 px-5 py-3.5 ${isMe && !hasResult ? 'bg-amber-50' : ''}`}
+                    className={`flex items-center justify-between gap-3 px-4 sm:px-5 py-3.5 ${isMe && !hasResult ? 'bg-amber-50' : ''}`}
                   >
                     <div className="flex items-center gap-3">
                       <span className={`w-2 h-2 rounded-full shrink-0 ${hasResult ? 'bg-emerald-400' : 'bg-slate-300'}`} />

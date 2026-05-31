@@ -13,7 +13,6 @@ export default function NavBar() {
     { to: '/statistikk', label: 'Statistikk' },
     { to: '/idretter', label: 'Idretter' },
     { to: '/bilder', label: 'Bilder' },
-    { to: '/arkiv', label: 'Arkiv' },
   ]
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
