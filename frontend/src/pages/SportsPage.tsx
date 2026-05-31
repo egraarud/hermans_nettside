@@ -115,7 +115,7 @@ export default function SportsPage() {
                 to={`/resultattavle?sport=${s.id}`}
                 className="mt-4 block text-center text-xs font-semibold text-slate-500 hover:text-amber-600 border border-slate-200 hover:border-amber-300 rounded-lg py-2 transition-colors"
               >
-                Full ledertavle →
+                Full tabell →
               </Link>
             </div>
           </div>

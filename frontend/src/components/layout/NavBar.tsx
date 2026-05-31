@@ -8,6 +8,7 @@ export default function NavBar() {
 
   const links = [
     { to: '/', label: 'Hjem' },
+    { to: '/program', label: 'Program' },
     { to: '/resultattavle', label: 'Resultattavle' },
     { to: '/resultater', label: 'Resultater' },
     { to: '/statistikk', label: 'Statistikk' },

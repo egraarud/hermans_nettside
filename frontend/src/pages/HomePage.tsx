@@ -96,7 +96,7 @@ export default function HomePage() {
 
           {/* Secondary nav buttons */}
           <div className="grid grid-cols-2 gap-4">
-            <NavCard label="Resultattavle" to="/resultattavle" />
+            <NavCard label="Tabell" to="/resultattavle" />
             <NavCard label="Program"       to="/program" />
           </div>
         </>
