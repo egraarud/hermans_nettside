@@ -1,3 +1,4 @@
 {
-  "provider": ["node", "python"]
+  "provider": "node",
+  "packages": ["python3", "python3-pip"]
 }
