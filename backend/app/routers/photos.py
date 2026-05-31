@@ -10,7 +10,7 @@ from app.schemas import PhotoOut, PhotoUpdate
 
 router = APIRouter(prefix="/photos", tags=["photos"])
 
-UPLOAD_DIR = Path(__file__).parent.parent.parent / "uploads"
+UPLOAD_DIR = Path(__file__).parent.parent.parent / "storage" / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 
 MAX_THUMBNAIL_WIDTH = 800
