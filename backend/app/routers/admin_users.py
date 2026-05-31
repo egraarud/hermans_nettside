@@ -25,7 +25,7 @@ def create_user(body: UserCreate, db: DbDep, _: BootstrapOrAdmin):
     if body.role not in ("admin", "participant"):
         raise HTTPException(status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, detail="Rolle må være 'admin' eller 'participant'")
 
-    password = generate_passphrase()
+    password = body.password or generate_passphrase()
     user = models.User(
         username=body.username,
         email=body.email,

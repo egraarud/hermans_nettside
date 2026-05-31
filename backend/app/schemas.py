@@ -147,6 +147,7 @@ class UserCreate(BaseModel):
     email: str
     role: str  # "admin" | "participant"
     participant_id: int | None = None
+    password: str | None = None
 
 
 class UserUpdate(BaseModel):
