@@ -1,6 +1,7 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, UploadFile, status
 
 from app import models
+from app.database import DATA_DIR
 from app.dependencies import BootstrapOrAdmin, DbDep
 from app.routers.auth import hash_password
 from app.schemas import UserCreate, UserOut, UserUpdate
@@ -84,3 +85,11 @@ def delete_user(user_id: int, db: DbDep, _: BootstrapOrAdmin):
         raise HTTPException(status_code=404, detail="Bruker ikke funnet")
     db.delete(user)
     db.commit()
+
+
+@router.post("/db-restore", status_code=200)
+async def restore_database(file: UploadFile, _: BootstrapOrAdmin):
+    db_path = DATA_DIR / "db.sqlite3"
+    content = await file.read()
+    db_path.write_bytes(content)
+    return {"ok": True, "bytes": len(content)}
