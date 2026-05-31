@@ -46,7 +46,7 @@ for router in [
     app.include_router(router, prefix=API_PREFIX)
 
 # Serve uploaded photos
-UPLOAD_DIR = Path(__file__).parent / "uploads"
+UPLOAD_DIR = Path(__file__).parent / "storage" / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
 app.mount("/static/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 

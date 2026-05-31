@@ -3,7 +3,7 @@ from pathlib import Path
 from sqlalchemy import create_engine
 from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).parent.parent / "storage" / "data"
 DATA_DIR.mkdir(exist_ok=True)
 
 DATABASE_URL = f"sqlite:///{DATA_DIR / 'db.sqlite3'}"
